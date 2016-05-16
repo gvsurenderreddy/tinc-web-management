@@ -11,5 +11,18 @@ use AppBundle\Entity\Sequence;
  */
 class SequenceRepository extends \Doctrine\ORM\EntityRepository
 {
-
+    /**
+     * @param $seqName
+     * @return int
+     */
+    public function getLastSeq($seqName){
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT s
+                 FROM AppBundle:Sequence s
+                 WHERE s.sequence = :seqName'
+            )
+            ->setParameter('seqName', $seqName)
+            ->getResult()[0]->getValue() -1 ;
+    }
 }

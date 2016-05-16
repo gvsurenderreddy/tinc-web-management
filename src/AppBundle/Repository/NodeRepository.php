@@ -19,4 +19,22 @@ class NodeRepository extends \Doctrine\ORM\EntityRepository
             )
             ->getResult();
     }
+
+    public function findNameBySeqGreaterThan($seq){
+        $arNameArray = $this->getEntityManager()
+            ->createQuery(
+                'SELECT n.name
+                 FROM AppBundle:Node n
+                 WHERE n.seq > ' . $seq
+            )
+            ->getArrayResult();
+
+        $arNames = array();
+        foreach ($arNameArray as $name) {
+            array_push($arNames, $name['name']);
+        }
+
+        return $arNames;
+    }
+
 }

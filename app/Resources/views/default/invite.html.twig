@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Create Invitation{% endblock %}
+
 {% block body %}
     <div id="wrapper">
         <div id="container">
@@ -8,9 +10,39 @@
                 Get you invitation code for tinc network.
             </div>
 
+            <table>
             {{ form_start(form) }}
-            {{ form_widget(form) }}
-            {{ form_end(form) }}
+                {{ form_errors(form) }}
+                <tr>
+                    <td>{{ form_label(form.Name) }}</td>
+                    <td>{{ form_errors(form.Name) }}</td>
+                    <td>{{ form_widget(form.Name) }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form_label(form.IsStaticOrDynDNS) }}</td>
+                    <td>{{ form_errors(form.IsStaticOrDynDNS) }}</td>
+                    <td>{{ form_widget(form.IsStaticOrDynDNS) }}</td>
+                </tr>
+
+                <tr id="detail-1" style="visibility: hidden;">
+                    <td colspan="3">Ensure your node is reachable under this address:port from the internet. (Setup Port-Forwarding)</td>
+                </tr>
+                <tr id="detail-2" style="visibility: hidden;">
+                    <td>{{ form_label(form.Address) }}</td>
+                    <td>{{ form_errors(form.Address) }}</td>
+                    <td>{{ form_widget(form.Address) }}</td>
+                </tr>
+                <tr id="detail-3" style="visibility: hidden;">
+                    <td>{{ form_label(form.Port) }}</td>
+                    <td>{{ form_errors(form.Port) }}</td>
+                    <td>{{ form_widget(form.Port) }}</td>
+                </tr>
+
+                <tr>
+                    <td colspan="3">{{ form_widget(form.save) }}</td>
+                </tr>
+                {{ form_end(form) }}
+            </table>
 
         </div>
     </div>
@@ -43,4 +75,20 @@
         .sf-toolbar { opacity: 0; -webkit-animation: fade-in 1s .2s forwards; animation: fade-in 1s .2s forwards;}
     }
 </style>
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript">
+    document.getElementById('form_IsStaticOrDynDNS').onclick = function() {
+        if ( this.checked ) {
+            document.getElementById('detail-1').style.visibility = 'visible';
+            document.getElementById('detail-2').style.visibility = 'visible';
+            document.getElementById('detail-3').style.visibility = 'visible';
+        } else {
+            document.getElementById('detail-1').style.visibility = 'hidden';
+            document.getElementById('detail-2').style.visibility = 'hidden';
+            document.getElementById('detail-3').style.visibility = 'hidden';
+        }
+    };
+</script>
 {% endblock %}

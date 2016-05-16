@@ -25,6 +25,20 @@ class Node
     private $name;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="invitationCode", type="string", length=128, nullable=false, options={"default" = ""})
+     */
+    private $invitationCode;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="IsActive", type="boolean", options={"default" = 0})
+     */
+    private $isActive;
+
+    /**
      * @var bool
      *
      * @ORM\Column(name="IsStaticOrDynDNS", type="boolean")
@@ -92,6 +106,22 @@ class Node
     }
 
     /**
+     * @return string
+     */
+    public function getInvitationCode()
+    {
+        return $this->invitationCode;
+    }
+
+    /**
+     * @param string $invitationCode
+     */
+    public function setInvitationCode($invitationCode)
+    {
+        $this->invitationCode = $invitationCode;
+    }
+
+    /**
      * Set isStaticOrDynDNS
      *
      * @param boolean $isStaticOrDynDNS
@@ -113,6 +143,30 @@ class Node
     public function getIsStaticOrDynDNS()
     {
         return $this->isStaticOrDynDNS;
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param $active
+     *
+     * @return $this
+     */
+    public function setIsActive($active)
+    {
+        $this->isActive = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return bool
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
     }
 
     /**

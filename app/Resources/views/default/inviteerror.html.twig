@@ -1,11 +1,14 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Invitation Error{% endblock %}
+
 {% block body %}
     <div id="wrapper">
         <div id="container">
-
-            {{  dump(nodes)  }}
-
+            <h3>Error while creating invitation</h3>
+            <p>
+                Ooops. Something went wrong while creating your invitation code.
+            </p>
         </div>
     </div>
 {% endblock %}

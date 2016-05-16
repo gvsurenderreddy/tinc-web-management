@@ -1,11 +1,17 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Invitation created{% endblock %}
+
 {% block body %}
     <div id="wrapper">
         <div id="container">
-            <pre>
-                {{ output }}
-            </pre>
+            <h3>Invitation created!</h3>
+            <p>
+                Use the following invitation code for <span style="font-family: monospace">tinc join CODE</span>
+            </p>
+            <p>
+                <code style="font-family: monospace">{{ code }}</code>
+            </p>
         </div>
     </div>
 {% endblock %}
